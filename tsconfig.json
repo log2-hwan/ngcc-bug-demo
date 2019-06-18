@@ -18,6 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngcc-test-library": [
+        "dist/ngcc-test-library"
+      ],
+      "ngcc-test-library/*": [
+        "dist/ngcc-test-library/*"
+      ]
+    }
   }
 }
