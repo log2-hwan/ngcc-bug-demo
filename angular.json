@@ -37,6 +37,120 @@
           }
         }
       }
-    }},
+    },
+    "ngcc-test-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ngcc-test-app",
+      "sourceRoot": "projects/ngcc-test-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngcc-test-app",
+            "index": "projects/ngcc-test-app/src/index.html",
+            "main": "projects/ngcc-test-app/src/main.ts",
+            "polyfills": "projects/ngcc-test-app/src/polyfills.ts",
+            "tsConfig": "projects/ngcc-test-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ngcc-test-app/src/favicon.ico",
+              "projects/ngcc-test-app/src/assets"
+            ],
+            "styles": [
+              "projects/ngcc-test-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngcc-test-app/src/environments/environment.ts",
+                  "with": "projects/ngcc-test-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngcc-test-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngcc-test-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngcc-test-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngcc-test-app/src/test.ts",
+            "polyfills": "projects/ngcc-test-app/src/polyfills.ts",
+            "tsConfig": "projects/ngcc-test-app/tsconfig.spec.json",
+            "karmaConfig": "projects/ngcc-test-app/karma.conf.js",
+            "assets": [
+              "projects/ngcc-test-app/src/favicon.ico",
+              "projects/ngcc-test-app/src/assets"
+            ],
+            "styles": [
+              "projects/ngcc-test-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngcc-test-app/tsconfig.app.json",
+              "projects/ngcc-test-app/tsconfig.spec.json",
+              "projects/ngcc-test-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngcc-test-app/e2e/protractor.conf.js",
+            "devServerTarget": "ngcc-test-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngcc-test-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "ngcc-test-library"
 }

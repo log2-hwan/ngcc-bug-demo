@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
     <p>
       ngcc-test-secondary works!
     </p>
-    <lib-ngcc-test-library></lib-ngcc-test-library>
   `,
   styles: []
 })
